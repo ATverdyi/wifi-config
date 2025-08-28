@@ -4,6 +4,37 @@ use dbus::{
 };
 use std::{collections::HashMap, time::Duration};
 
+/// Sends Wi-Fi configuration to **NetworkManager** via the D-Bus system bus.
+///
+/// # Arguments
+///
+/// * `ssid` - The name of the Wi-Fi network (SSID).
+/// * `password` - The password for the Wi-Fi network.
+///
+/// # Behavior
+///
+/// - Connects to the system D-Bus and queries NetworkManager for available devices.
+/// - Searches for the first device of type `2` (which corresponds to Wi-Fi).
+/// - Builds a connection settings dictionary compatible with NetworkManager:
+///   - `802-11-wireless` (SSID, mode)
+///   - `802-11-wireless-security` (WPA-PSK with the given password)
+/// - Calls `AddAndActivateConnection` to tell NetworkManager to connect.
+///
+/// # Errors
+///
+/// - If no Wi-Fi device is found, the function prints an error to stderr and returns.
+/// - If D-Bus calls fail, the error is printed to stderr.
+///
+/// # Example
+///
+/// ```no_run
+/// use wifi_config::send_wifi_to_network_manager;
+///
+/// fn main() {
+///     send_wifi_to_network_manager("MyHomeWiFi", "supersecret123");
+/// }
+/// ```
+
 /// Sends Wi-Fi parameters to NetworkManager for connection
 pub fn send_wifi_to_network_manager(ssid: &str, password: &str) {
     let conn = Connection::new_system().unwrap();
