@@ -69,3 +69,13 @@ pub fn send_wifi_to_network_manager(ssid: &str, password: &str) {
         Err(e) => eprintln!("Failed to configure Wi-Fi: {}", e),
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_check() {
+        assert!(true);
+    }
+}
