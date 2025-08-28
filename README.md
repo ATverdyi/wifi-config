@@ -9,6 +9,14 @@ Install the CLI tool from crates.io:
 cargo install wifi-config
 ```
 
+## 📦 Usage
+
+```bash
+wifi-config <SSID> <PASSWORD>
+
+```
+
+
 ## License
 
 Licensed under either of:
