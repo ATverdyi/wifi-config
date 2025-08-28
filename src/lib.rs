@@ -101,6 +101,7 @@ pub fn send_wifi_to_network_manager(ssid: &str, password: &str) {
     }
 }
 
+//test
 #[cfg(test)]
 mod tests {
     use super::*;
